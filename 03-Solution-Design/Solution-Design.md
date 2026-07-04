@@ -1,118 +1,232 @@
-# Configuration Blueprint
+# Solution Design
 
 ## Document Information
 
 | Item | Details |
 |------|---------|
-| Document Name | Configuration Blueprint |
+| Document Name | Solution Design |
 | Project | SAP S/4HANA MM Greenfield Implementation |
+| Organization | NovaTech Electronics Manufacturing India Pvt. Ltd. |
+| Industry | Electronics Manufacturing |
 | Module | SAP S/4HANA Materials Management (MM) |
+| Plant | CN01 – Sriperumbudur |
 | Version | 1.0 |
+| Prepared By | SAP MM Functional Consultant |
 
 ---
 
 # 1. Purpose
 
-This document maps the business requirements to SAP configuration objects. It serves as the implementation guide during the SAP configuration phase.
+This document defines the proposed SAP S/4HANA MM solution based on the approved business requirements. It describes the enterprise structure, organizational structure, procurement process, master data, and business workflow that will be implemented during the SAP configuration phase.
 
 ---
 
-# 2. Configuration Overview
+# 2. Solution Overview
 
-| Business Requirement | SAP Configuration Object |
-|----------------------|--------------------------|
-| Company Setup | Company & Company Code |
-| Manufacturing Location | Plant |
-| Inventory Segregation | Storage Location |
-| Procurement Organization | Purchasing Organization |
-| Buyer Assignment | Purchasing Group |
-| Material Management | Material Master |
-| Vendor Management | Business Partner |
-| Material Classification | Material Group |
-| Procurement | Purchase Requisition |
-| Purchasing | Purchase Order |
-| Goods Receiving | Goods Receipt |
-| Inventory | Inventory Management |
-| Invoice Processing | Invoice Verification |
+The current procurement process is managed using multiple independent systems for purchasing, approvals, inventory, and budgeting. The proposed SAP S/4HANA MM solution will replace these fragmented systems with a single integrated ERP platform, enabling centralized procurement, inventory management, vendor management, and invoice verification.
 
 ---
 
-# 3. Enterprise Structure Configuration
+# 3. Business Solution Architecture
 
-| SAP Object | Planned Value | Purpose |
-|------------|--------------|---------|
-| Company | NovaTech Electronics | Organization |
-| Company Code | NT01 | Legal Entity |
-| Plant | CN01 | Manufacturing Plant |
-| Purchasing Organization | PO01 | Procurement |
-| Storage Locations | RM01, CS01, IT01 | Inventory Management |
+```mermaid
+flowchart LR
+A[Customer Production Demand]
+--> B[Operations Planning]
+--> C[IE Planning]
+--> D[Procurement]
+--> E[Inventory]
+--> F[Finance]
+--> G[Accounts]
+```
 
 ---
 
-# 4. Master Data Configuration
+# 4. Organizational Structure
 
-| Configuration | Purpose |
-|--------------|---------|
-| Material Master | Material Details |
-| Business Partner | Vendor Creation |
+The following departments participate throughout the procurement lifecycle.
+
+```mermaid
+flowchart TD
+A[Customer Production Demand]
+--> B[Operations Planning Team]
+B --> C[IE Planning Team]
+C --> D[Procurement Team]
+D --> E[Logistics Team]
+E --> F[Inventory Team]
+F --> G[Cost Management]
+G --> H[Finance]
+H --> I[Accounts]
+I --> J[Vendor Payment]
+```
+
+| Department | Responsibility |
+|------------|----------------|
+| Operations Planning | Weekly production planning |
+| IE Planning | Material requirement planning |
+| Procurement | Purchase Requisition, Purchase Order, Vendor Management |
+| Logistics | ETA Tracking & Material Transportation |
+| Inventory | Goods Receipt, Goods Issue & Stock Management |
+| Cost Management | Budget Monitoring |
+| Finance | Invoice Verification |
+| Accounts | Vendor Payment |
+
+---
+
+# 5. Enterprise Structure
+
+The SAP Enterprise Structure is designed as follows.
+
+| SAP Object | Planned Value |
+|------------|---------------|
+| Client | 100 |
+| Company | NovaTech Electronics Manufacturing India Pvt. Ltd. |
+| Company Code | NT01 |
+| Plant | CN01 |
+| Purchasing Organization | PO01 |
+| Purchasing Groups | CAP, CON, IMP |
+| Storage Locations | RM01, CS01, IT01 |
+
+```mermaid
+flowchart TD
+A[Client 100]
+--> B[Company<br/>NovaTech Electronics]
+B --> C[Company Code<br/>NT01]
+C --> D[Plant<br/>CN01]
+D --> E1[RM01<br/>Raw Materials]
+D --> E2[CS01<br/>Consumables]
+D --> E3[IT01<br/>IT Materials]
+C --> F[Purchasing Organization<br/>PO01]
+F --> G1[CAP<br/>CAPEX]
+F --> G2[CON<br/>Consumables]
+F --> G3[IMP<br/>Imports]
+```
+
+---
+
+# 6. Master Data Design
+
+The following master data will support procurement activities.
+
+| Master Data | Purpose |
+|-------------|---------|
+| Material Master | Material Information |
+| Business Partner | Vendor Management |
 | Material Group | Material Classification |
 | Purchasing Info Record | Vendor Pricing |
-| Source List | Vendor Selection |
+| Source List | Approved Vendor Selection |
 
 ---
 
-# 5. Procurement Configuration
+# 7. Procurement Categories
 
-| Business Process | SAP Object |
-|------------------|------------|
-| Purchase Requisition | PR |
-| Approval Process | Release Strategy |
-| Purchase Order | PO |
-| Goods Receipt | GR |
-| Goods Issue | GI |
-| Invoice Verification | IV |
-
----
-
-# 6. Inventory Management
-
-| Activity | SAP Function |
-|----------|--------------|
-| Material Receipt | Goods Receipt |
-| Material Issue | Goods Issue |
-| Stock Monitoring | Inventory Management |
-| Stock Transfer | Transfer Posting |
+| Procurement Category | Examples |
+|----------------------|----------|
+| Production Materials | Smartphone Components |
+| Consumables | Gloves, Wipe Roll, Milling Cutter |
+| Fixtures | Production Fixtures |
+| Imported Materials | Testing Cables |
+| IT Materials | Laptops, Network Devices |
+| CAPEX | Production Equipment |
+| Services | Calibration & Maintenance |
 
 ---
 
-# 7. Testing Scope
+# 8. Procurement Process Design
 
-The following business scenarios will be validated after configuration:
+The procurement lifecycle within SAP S/4HANA MM is designed as follows.
 
-- Standard Procurement
-- Import Procurement
-- Consumable Procurement
-- CAPEX Procurement
-- Service Procurement
-- Goods Receipt
-- Goods Issue
-- Invoice Verification
-
----
-
-# 8. Deliverables
-
-The SAP configuration phase will produce:
-
-- Enterprise Structure Configuration
-- Master Data Configuration
-- Procurement Configuration
-- Inventory Management Configuration
-- Business Scenario Testing
-- Configuration Documentation
+```mermaid
+flowchart LR
+A[Production Demand]
+--> B[IE Planning]
+--> C[Material Requirement]
+--> D[Purchase Requisition]
+--> E[Approval]
+--> F[Purchase Order]
+--> G[Vendor]
+--> H[Material Delivery]
+--> I[Goods Receipt]
+--> J[Inventory]
+--> K[Goods Issue]
+--> L[Invoice Verification]
+--> M[Vendor Payment]
+```
 
 ---
 
-# 9. Conclusion
+# 9. SAP Document Flow
 
-This blueprint provides the configuration roadmap for implementing SAP S/4HANA MM. Each configuration activity is aligned with the approved business requirements and will be validated during the testing phase before project completion.
+The following business documents are generated during procurement.
+
+```mermaid
+flowchart LR
+A[Purchase Requisition]
+--> B[Purchase Order]
+--> C[Goods Receipt]
+--> D[Invoice Verification]
+--> E[Vendor Payment]
+```
+
+---
+
+# 10. Material Flow
+
+The movement of materials from supplier to production is shown below.
+
+```mermaid
+flowchart LR
+A[Vendor]
+--> B[Receiving Area]
+--> C[Warehouse]
+--> D[Production Line]
+--> E[Finished Smartphones]
+```
+
+---
+
+# 11. Approval Workflow
+
+Purchase Requisitions and Purchase Orders follow an approval hierarchy before procurement execution.
+
+```mermaid
+flowchart TD
+A[Purchase Requisition]
+--> B[Department Approval]
+--> C[Manager Approval]
+--> D[Business Unit Head Approval]
+--> E[Purchase Order Creation]
+```
+
+---
+
+# 12. Integration Overview
+
+| SAP MM Process | Business Function |
+|----------------|-------------------|
+| Material Master | Material Management |
+| Business Partner | Vendor Management |
+| Purchase Requisition | Demand Management |
+| Purchase Order | Procurement |
+| Goods Receipt | Inventory Management |
+| Goods Issue | Production Support |
+| Invoice Verification | Finance Integration |
+
+---
+
+# 13. Expected Benefits
+
+- Centralized procurement operations
+- Standardized procurement workflow
+- Improved inventory visibility
+- Better vendor management
+- Faster approval process
+- Reduced manual effort
+- Real-time procurement reporting
+- Improved operational efficiency
+
+---
+
+# 14. Conclusion
+
+The proposed SAP S/4HANA MM solution provides a centralized and standardized procurement framework by integrating planning, procurement, inventory, finance, and accounts into a single ERP platform. This design serves as the blueprint for SAP configuration, testing, and successful implementation.
