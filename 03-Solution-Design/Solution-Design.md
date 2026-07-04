@@ -2,16 +2,16 @@
 
 ## Document Information
 
-| Item | Details |
-|------|---------|
-| Document Name | Solution Design |
-| Project | SAP S/4HANA MM Greenfield Implementation |
-| Organization | NovaTech Electronics Manufacturing India Pvt. Ltd. |
-| Industry | Electronics Manufacturing |
-| Module | SAP S/4HANA Materials Management (MM) |
-| Plant | CN01 – Sriperumbudur |
-| Version | 1.0 |
-| Prepared By | SAP MM Functional Consultant |
+| Item          | Details                                            |
+| ------------- | -------------------------------------------------- |
+| Document Name | Solution Design                                    |
+| Project       | SAP S/4HANA MM Greenfield Implementation           |
+| Organization  | NovaTech Electronics Manufacturing India Pvt. Ltd. |
+| Industry      | Electronics Manufacturing                          |
+| Module        | SAP S/4HANA Materials Management (MM)              |
+| Plant         | CN01 – Sriperumbudur                               |
+| Version       | 1.0                                                |
+| Prepared By   | SAP MM Functional Consultant                       |
 
 ---
 
@@ -60,16 +60,16 @@ H --> I[Accounts]
 I --> J[Vendor Payment]
 ```
 
-| Department | Responsibility |
-|------------|----------------|
-| Operations Planning | Weekly production planning |
-| IE Planning | Material requirement planning |
-| Procurement | Purchase Requisition, Purchase Order, Vendor Management |
-| Logistics | ETA Tracking & Material Transportation |
-| Inventory | Goods Receipt, Goods Issue & Stock Management |
-| Cost Management | Budget Monitoring |
-| Finance | Invoice Verification |
-| Accounts | Vendor Payment |
+| Department          | Responsibility                                          |
+| ------------------- | ------------------------------------------------------- |
+| Operations Planning | Weekly production planning                              |
+| IE Planning         | Material requirement planning                           |
+| Procurement         | Purchase Requisition, Purchase Order, Vendor Management |
+| Logistics           | ETA Tracking & Material Transportation                  |
+| Inventory           | Goods Receipt, Goods Issue & Stock Management           |
+| Cost Management     | Budget Monitoring                                       |
+| Finance             | Invoice Verification                                    |
+| Accounts            | Vendor Payment                                          |
 
 ---
 
@@ -77,15 +77,15 @@ I --> J[Vendor Payment]
 
 The SAP Enterprise Structure is designed as follows.
 
-| SAP Object | Planned Value |
-|------------|---------------|
-| Client | 100 |
-| Company | NovaTech Electronics Manufacturing India Pvt. Ltd. |
-| Company Code | NT01 |
-| Plant | CN01 |
-| Purchasing Organization | PO01 |
-| Purchasing Groups | CAP, CON, IMP |
-| Storage Locations | RM01, CS01, IT01 |
+| SAP Object              | Planned Value                                      |
+| ----------------------- | -------------------------------------------------- |
+| Client                  | 100                                                |
+| Company                 | NovaTech Electronics Manufacturing India Pvt. Ltd. |
+| Company Code            | NT01                                               |
+| Plant                   | CN01                                               |
+| Purchasing Organization | PO01                                               |
+| Purchasing Groups       | CAP, CON, IMP                                      |
+| Storage Locations       | RM01, CS01, IT01                                   |
 
 ```mermaid
 flowchart TD
@@ -108,27 +108,27 @@ F --> G3[IMP<br/>Imports]
 
 The following master data will support procurement activities.
 
-| Master Data | Purpose |
-|-------------|---------|
-| Material Master | Material Information |
-| Business Partner | Vendor Management |
-| Material Group | Material Classification |
-| Purchasing Info Record | Vendor Pricing |
-| Source List | Approved Vendor Selection |
+| Master Data            | Purpose                   |
+| ---------------------- | ------------------------- |
+| Material Master        | Material Information      |
+| Business Partner       | Vendor Management         |
+| Material Group         | Material Classification   |
+| Purchasing Info Record | Vendor Pricing            |
+| Source List            | Approved Vendor Selection |
 
 ---
 
 # 7. Procurement Categories
 
-| Procurement Category | Examples |
-|----------------------|----------|
-| Production Materials | Smartphone Components |
-| Consumables | Gloves, Wipe Roll, Milling Cutter |
-| Fixtures | Production Fixtures |
-| Imported Materials | Testing Cables |
-| IT Materials | Laptops, Network Devices |
-| CAPEX | Production Equipment |
-| Services | Calibration & Maintenance |
+| Procurement Category | Examples                          |
+| -------------------- | --------------------------------- |
+| Production Materials | Smartphone Components             |
+| Consumables          | Gloves, Wipe Roll, Milling Cutter |
+| Fixtures             | Production Fixtures               |
+| Imported Materials   | Testing Cables                    |
+| IT Materials         | Laptops, Network Devices          |
+| CAPEX                | Production Equipment              |
+| Services             | Calibration & Maintenance         |
 
 ---
 
@@ -202,15 +202,15 @@ A[Purchase Requisition]
 
 # 12. Integration Overview
 
-| SAP MM Process | Business Function |
-|----------------|-------------------|
-| Material Master | Material Management |
-| Business Partner | Vendor Management |
-| Purchase Requisition | Demand Management |
-| Purchase Order | Procurement |
-| Goods Receipt | Inventory Management |
-| Goods Issue | Production Support |
-| Invoice Verification | Finance Integration |
+| SAP MM Process       | Business Function    |
+| -------------------- | -------------------- |
+| Material Master      | Material Management  |
+| Business Partner     | Vendor Management    |
+| Purchase Requisition | Demand Management    |
+| Purchase Order       | Procurement          |
+| Goods Receipt        | Inventory Management |
+| Goods Issue          | Production Support   |
+| Invoice Verification | Finance Integration  |
 
 ---
 
